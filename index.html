@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Figure grid</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #f5f6f8;
+            --fg: #1c2330;
+            --cell-bg: #ffffff;
+            --cell-line: #9aa5b8;
+
+            /* ---- LAYOUT CONTROLS ---------------------------------------------
+       The table is 80% of the viewport width and is split into 15 "units"
+       (10 for the left column + 5 for the right column).
+       Change these numbers to resize the grid.
+    ------------------------------------------------------------------- */
+            --table-width: 70vw;
+            --col-left: 10;
+            /* width of the left column, in units   */
+            --col-right: 5;
+            /* width of the right column, in units  */
+            --row-top: 5;
+            /* height of the top row, in units      */
+            --row-bottom: 10;
+            /* height of the bottom row, in units   */
+
+            /* One unit = table width divided by the total number of column units */
+            --unit: calc(var(--table-width) / (var(--col-left) + var(--col-right)));
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #12161d;
+                --fg: #e4e8ef;
+                --cell-bg: #1b212b;
+                --cell-line: #566177;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 2rem 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: system-ui, sans-serif;
+        }
+
+        table {
+            width: var(--table-width);
+            margin: 0 auto;
+            /* centers the table horizontally */
+            border-collapse: collapse;
+            table-layout: fixed;
+            /* column widths come from <col>, not content */
+        }
+
+        /* Column widths */
+        col.left {
+            width: calc(var(--unit) * var(--col-left));
+        }
+
+        col.right {
+            width: calc(var(--unit) * var(--col-right));
+        }
+
+        /* Row heights */
+        tr.top {
+            height: calc(var(--unit) * var(--row-top));
+        }
+
+        tr.bottom {
+            height: calc(var(--unit) * var(--row-bottom));
+        }
+
+        td {
+            padding: 0;
+            position: relative;
+            /* lets the figure fill the cell exactly */
+        }
+
+        /* Placeholder that fills its cell. Replace with your <img>, <canvas>, <svg>, etc. */
+        .figure {
+            position: absolute;
+            inset: 4px;
+            /* small gap between neighbouring figures */
+            display: grid;
+            place-items: center;
+            background: var(--cell-bg);
+            border: 1.5px dashed var(--cell-line);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* If you drop an image or canvas inside, this makes it fill the box */
+        .figure>img,
+        .figure>canvas,
+        .figure>svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>Exoplanet Discovery as a Model for Biosignature and Technosignature Discovery</h2>
+    </div>
+
+    <div>
+        <h2>The first biosignatures should not be considered to be representative of most life in the universe.
+            Ascertaining this will be a massive scientific feat unto itself.</h2>
+    </div>
+
+    <div>
+        <p>Even over twenty years after the first exoplanets were discovered, most of our exoplanets catalogued are
+            found very close to their stars. The data might suggest that most exoplanets in the galaxy are thus very
+            close to their host stars, making planets like our own Earth and Jupiter a rarity. In fact, this large
+            number of close-orbiting exoplanets is an artifact of observational bias -- they are the planets that are
+            the easiest to detect. Likewise, the first biosignatures, technosignatures, or any other strand of novel
+            cosmic event will likely be those that are the easiest to detect given our current technological
+            instruments.
+        </p>
+    </div>
+
+    <table>
+        <colgroup>
+            <col class="left">
+            <col class="right">
+        </colgroup>
+        <tr class="top">
+            <td>
+                <div class="figure">
+                    <img src="exoplanets_semi_major_axis.gif" alt="TBC">
+                </div>
+            </td>
+            <td>
+                <div>
+
+                </div>
+            </td>
+        </tr>
+        <tr class="bottom">
+            <td>
+                <div class="figure">
+                    <img src="exoplanets_mass_semi.gif" alt="TBC">
+                </div>
+            </td>
+            <td>
+                <div class="figure">
+                    <img src="exoplanets_masses.gif" alt="TBC">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <h2>Detecting a biosignature with certainty may prove to be a completely different feat than characterizing the
+            kind of life
+            that might be there.</h2>
+    </div>
+
+    <div>
+        <p>
+            Each of these dots in the figures above and below represent an exoplanet that has been detected to exist
+            with high certainty. Yet, our current measurements of
+            mass and distance still come with rather large uncertainties, so that scientists can only confidently say
+            that
+            their true values of mass and distance likely lie within a particular range. Below, I have modelled 30 "true
+            values" for every exoplanet's mass and distance from host star, each of which would be perfectly consistent
+            with these statistical ranges. The mass and distance of a single exoplanet can vary quite substantially
+            (modelled by the movement of the dots), while population-level trends are preserved.
+        </p>
+        <p>
+            The discovery of exoplanets is premised on an accepted idea of what they must generally all share in common:
+            They have mass, volume, and periodically orbit a star. If a similar model is taken for biosignatures,
+            wherein a list of universal properties of life are adopted and detection methods are devised by
+            working out what the consequences of those properties might be, there could be a situation where a
+            biosignature is detected with high certainty, but scientists are not able to make any further conclusions on
+            what that life might be like in ways that the public might be curious about. This may yield a unique
+            communication challenge. In the realm of biosignature/technosigature detection on other planets, scientists
+            may face longstanding difficulties in characterizing a single signature. Success may look instead like the
+            another frontier of population-level studies of biosignatures that survey many biosignatures, enabling
+            scientists to speak about life across the universe in general, rather than saying for certain life on one
+            planet is like this.
+        </p>
+    </div>
+
+    <table>
+        <colgroup>
+            <col class="left">
+            <col class="right">
+        </colgroup>
+        <tr class="top">
+            <td>
+                <div class="figure">
+                    <img src="exoplanets_semi_major_axis_noisy.gif" alt="TBC">
+                </div>
+            </td>
+            <td></td> <!-- top right: intentionally blank -->
+        </tr>
+        <tr class="bottom">
+            <td>
+                <div class="figure">
+                    <img src="exoplanets_semi_masses_noisy.gif" alt="TBC">
+                </div>
+            </td>
+            <td>
+                <div class="figure">
+                    <img src="exoplanets_masses_noisy.gif" alt="TBC">
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
